@@ -6,6 +6,12 @@ from slack_sdk.errors import SlackApiError
 from slack_bolt.app.async_app import AsyncApp
 from slack_bolt.adapter.socket_mode.async_handler import AsyncSocketModeHandler
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+slack_channel = os.getenv("SLACK_CHANNEL")
+
 class SlackClient:
     def __init__(self, bot_token: str):
         self.bot_token = bot_token
@@ -106,7 +112,7 @@ class CommandHandler:
 
         await say("Research completed. Preparing the summary...")
 
-        await self.client.send_message(channel="ai-powered-services",
+        await self.client.send_message(channel=slack_channel,
                                        text=re.sub(r'\*{2,}', '*', state["messages"][-1].content))
 
     async def handle_deep_search(self, ack, body, say, respond):
@@ -136,7 +142,7 @@ class CommandHandler:
 
         await say("Research completed. Preparing the summary...")
 
-        await self.client.send_message(channel="ai-powered-services", text=re.sub(r'\*{2,}', '*', state["messages"][-1].content))
+        await self.client.send_message(channel=slack_channel, text=re.sub(r'\*{2,}', '*', state["messages"][-1].content))
 
 
 class SlackBot:
