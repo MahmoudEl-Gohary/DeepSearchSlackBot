@@ -112,7 +112,7 @@ class CommandHandler:
 
         await say("Research completed. Preparing the summary...")
 
-        await self.client.send_message(channel=slack_channel,
+        await self.client.send_message(channel=event["channel"],
                                        text=re.sub(r'\*{2,}', '*', state["messages"][-1].content))
 
     async def handle_deep_search(self, ack, body, say, respond):
