@@ -1,4 +1,4 @@
-# PraxiSlackBot 🤖
+# SlackBot 🤖
 
 A sophisticated AI-powered Slack bot built with Python that integrates advanced conversational capabilities using LangGraph for intelligent responses and workflow management.
 
